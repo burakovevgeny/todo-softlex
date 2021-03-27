@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "react-app",
+    "airbnb",
+    "prettier"
+  ],
+  "rules": {
+    "jsx-quotes": [
+      1,
+      "prefer-double"
+    ],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+    "react/jsx-one-expression-per-line": "off"
+  },
+  "plugins": [
+    "prettier",
+    "react"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "ecmaVersion": 6,
+      "jsx": true
+    }
+  }
+}
