@@ -27,10 +27,10 @@ export default function Header() {
         <Toolbar>
           <Typography variant="h4" className={classes.header__title}>
             <NavLink exact to="/">
-              TODO SOFTLEX
+              SOFTLEX
             </NavLink>
           </Typography>
-          <Button color="inherit">LOGOUT</Button>
+          <Button variant="contained" color="secondary">LOGOUT</Button>
         </Toolbar>
       </AppBar>
     </div>
