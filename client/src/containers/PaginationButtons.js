@@ -1,6 +1,8 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import Pagination from '@material-ui/lab/Pagination'
+import { getPage } from '../redux/reducers/database'
 
 const useStyles = makeStyles((theme) => ({
   content__pagination: {
@@ -13,17 +15,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PaginationControlled() {
   const classes = useStyles()
-  const [page, setPage] = React.useState(1)
-  const handleChange = (event, value) => {
+
+  const { database, sort } = useSelector((store) => store.database)
+
+  const [page, setPage] = useState(1)
+  const dispatch = useDispatch()
+
+  const handleChange = (_, value) => {
     setPage(value)
   }
+
+  useEffect(() => {
+    dispatch(getPage(page))
+  }, [dispatch, page, sort])
 
   return (
     <div className={classes.content__pagination}>
       <Pagination
-        count={3}
+        count={database.totalTaskCount}
         page={page}
         onChange={handleChange}
+        showFirstButton
         showLastButton
       />
     </div>

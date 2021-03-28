@@ -1,8 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { Button } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
-import SortRadioButtonsGroup from './SortRadioButtonsGroup'
-import SortSelect from './SortSelect'
+import SortRadioButtonsGroup from '../containers/SortRadioButtonsGroup'
+import SortSelect from '../containers/SortSelect'
 
 const useStyles = makeStyles(() => ({
   content__sort_wrapper: {
@@ -23,9 +22,6 @@ export default function SortWrapper() {
       <Typography>Sort by:</Typography>
       <SortRadioButtonsGroup />
       <SortSelect />
-      <Button variant="contained" color="secondary">
-        SEARCH
-      </Button>
     </div>
   )
 }

@@ -1,34 +1,40 @@
-import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
+import {
+  USERNAME,
+  EMAIL,
+  STATUS,
+  setSortField,
+} from '../redux/reducers/database'
 
 export default function SortRadioButtonsGroup() {
-  const [value, setValue] = React.useState('')
+
+  const { sort } = useSelector(store => store.database)
+  const dispatch = useDispatch()
 
   const handleChange = (event) => {
-    setValue(event.target.value)
+    dispatch(setSortField(event.target.value))
   }
 
   return (
-    <FormControl
-      component="fieldset"
-    >
+    <FormControl component="fieldset">
       <RadioGroup
         aria-label="Sorting"
         name="Sorting"
-        value={value}
+        value={sort.sortField}
         row
         onChange={handleChange}
       >
         <FormControlLabel
-          value="Username"
+          value={USERNAME}
           control={<Radio />}
           label="Username"
         />
-        <FormControlLabel value="E-mail" control={<Radio />} label="E-mail" />
-        <FormControlLabel value="Status" control={<Radio />} label="Status" />
+        <FormControlLabel value={EMAIL} control={<Radio />} label="E-mail" />
+        <FormControlLabel value={STATUS} control={<Radio />} label="Status" />
       </RadioGroup>
     </FormControl>
   )

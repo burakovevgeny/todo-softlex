@@ -1,10 +1,10 @@
-import Header from '../components/Header'
+import Header from '../containers/Header'
 import Footer from '../components/Footer'
 import Layout from '../components/Layout'
-import TodoTable from '../components/TodoTable'
-import PaginationButtons from '../components/PaginationButtons'
-import SortWrapper from '../components/Sort/SortWrapper'
-import InputTask from '../components/InputTask'
+import TodoTable from '../containers/TodoTable'
+import PaginationButtons from '../containers/PaginationButtons'
+import SortWrapper from '../components/SortWrapper'
+import InputTask from '../containers/InputTask'
 
 export default function MainPage() {
   return (

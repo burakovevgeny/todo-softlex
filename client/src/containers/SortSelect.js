@@ -1,16 +1,25 @@
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import Typography from '@material-ui/core/Typography'
+import {
+  ASCENDING,
+  DESCENDING,
+  STATUS,
+  DONE,
+  IN_PROGRESS,
+  setSortDirection,
+} from '../redux/reducers/database'
 
 const useStyles = makeStyles((theme) => ({
   content__sortWrapper: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: '20px'
+    marginBottom: '20px',
   },
   content__formControl: {
     margin: theme.spacing(1),
@@ -20,11 +29,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SortSelect() {
   const classes = useStyles()
-  const [value, setValue] = useState('')
+  const { sort } = useSelector((store) => store.database)
+  const dispatch = useDispatch(useDispatch)
   const [open, setOpen] = useState(false)
 
   const handleChange = (event) => {
-    setValue(event.target.value)
+    dispatch(setSortDirection(event.target.value))
   }
 
   const handleClose = () => {
@@ -43,11 +53,15 @@ export default function SortSelect() {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={value}
+          value={sort.sortDirection}
           onChange={handleChange}
         >
-          <MenuItem value={2}>desc</MenuItem>
-          <MenuItem value={3}>asc</MenuItem>
+          <MenuItem value={ASCENDING}>
+            {sort.sortField === STATUS ? IN_PROGRESS : ASCENDING}
+          </MenuItem>
+          <MenuItem value={DESCENDING}>
+            {sort.sortField === STATUS ? DONE : DESCENDING}
+          </MenuItem>
         </Select>
       </FormControl>
     </div>
