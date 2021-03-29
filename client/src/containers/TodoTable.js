@@ -55,7 +55,7 @@ export default function TodoTable() {
     dispatch(getDatabase())
   })
 
-  function test(status) {
+  function setStatus(status) {
     if (status === 1 || status === 0) {
       return <Typography color="primary">in progress</Typography>
     }
@@ -87,7 +87,7 @@ export default function TodoTable() {
               </StyledTableCell>
               <StyledTableCell>{item.username}</StyledTableCell>
               <StyledTableCell>{item.email}</StyledTableCell>
-              <StyledTableCell>{test(item.status)}</StyledTableCell>
+              <StyledTableCell>{setStatus(item.status)}</StyledTableCell>
               {token ? (
                 <StyledTableCell
                   onClick={() =>
