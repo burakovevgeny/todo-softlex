@@ -1,9 +1,11 @@
-import { NavLink } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { NavLink, useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { Button } from '@material-ui/core'
+import { logout } from '../redux/reducers/login'
 
 const useStyles = makeStyles(() => ({
   header: {
@@ -20,6 +22,9 @@ const useStyles = makeStyles(() => ({
 
 export default function Header() {
   const classes = useStyles()
+  const { auth } = useSelector((store) => store.login)
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   return (
     <div className={classes.header}>
@@ -27,10 +32,26 @@ export default function Header() {
         <Toolbar>
           <Typography variant="h4" className={classes.header__title}>
             <NavLink exact to="/">
-              TODO SOFTLEX
+              SOFTLEX
             </NavLink>
           </Typography>
-          <Button color="inherit">LOGOUT</Button>
+          {auth ? (
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => dispatch(logout())}
+            >
+              LOGOUT
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => history.push('/login')}
+            >
+              LOGIN
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>

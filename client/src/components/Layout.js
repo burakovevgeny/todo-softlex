@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   content__wrapper: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',
     margin: '10px',
