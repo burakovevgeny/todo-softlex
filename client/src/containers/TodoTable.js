@@ -10,7 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import Checkbox from '@material-ui/core/Checkbox'
+import Typography from '@material-ui/core/Typography'
 import { getDatabase } from '../redux/reducers/database'
 import { getEdit } from '../redux/reducers/task'
 
@@ -53,14 +53,14 @@ export default function TodoTable() {
 
   useEffect(() => {
     dispatch(getDatabase())
-  }, [dispatch])
+  })
 
   function test(status) {
     if (status === 1 || status === 0) {
-      return <Checkbox color="secondary" disabled />
+      return <Typography color="primary">in progress</Typography>
     }
     if (status === 10 || status === 11) {
-      return <Checkbox color="secondary" disabled checked />
+      return <Typography color="secondary">done</Typography>
     }
     return null
   }
@@ -87,9 +87,7 @@ export default function TodoTable() {
               </StyledTableCell>
               <StyledTableCell>{item.username}</StyledTableCell>
               <StyledTableCell>{item.email}</StyledTableCell>
-              <StyledTableCell>
-                {test(item.status)}
-              </StyledTableCell>
+              <StyledTableCell>{test(item.status)}</StyledTableCell>
               {token ? (
                 <StyledTableCell
                   onClick={() =>
